@@ -5,6 +5,7 @@ namespace Darunada\Console;
 use Illuminate\Filesystem\Filesystem;
 use Pimple\Container;
 use Symfony\Component\Console\Application;
+use Medoo\Medoo;
 
 class InitArtisan
 {
@@ -43,6 +44,19 @@ class InitArtisan
                 $console = new $path($c);
                 $console->setLaravel(new FakeLaravel($console));
                 return $console;
+            };
+
+            $container['database'] = function(Container $c) {
+                $config = [
+                    'database_type' => 'mysql',
+                    'database_name' => getenv('DATABASE_NAME'),
+                    'server' => getenv('DATABASE_HOSTNAME'),
+                    'port' => getenv('DATABASE_PORT'),
+                    'username' => getenv('DATABASE_USERNAME'),
+                    'password' => getenv('DATABASE_PASSWORD'),
+                    'charset' => 'utf8'
+                ];
+                return new Medoo($config);
             };
 
             $app->add($container['details']);

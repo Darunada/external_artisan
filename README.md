@@ -62,10 +62,20 @@ the Command constructor with the things you might need.
 I will add services to this list as I need them.  Or, feel free to add 
 your own.  You can also instantiate them yourself inside your commands.
 + `$container['filesystem']` is an `Illuminate\Filesystem\Filesystem`
-+ ... Other entries will be added as I need them
++ `$container['database']` is a `Medoo\Medoo` [Documentation](http://medoo.in/doc) _I don't really love it, though_
 
 These services are provided in `\Darunada\Console\InitArtisan`
 
+```
+/** @var Medoo */
+private $database;
+
+public function __construct($container)
+{
+    parent::__construct();
+    $this->database = $container['database'];
+}
+```
+
 ##Todo
-+ Provide a database service
 + Test??

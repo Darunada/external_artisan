@@ -6,7 +6,8 @@
     "require": {
         "illuminate/console": "*" ,
         "illuminate/filesystem" : "~5.4",
-        "pimple/pimple": "~3.0"
+        "pimple/pimple": "~3.0",
+        "catfan/Medoo": "^1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"
